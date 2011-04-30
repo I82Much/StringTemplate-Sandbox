@@ -29,10 +29,14 @@ public class StringTemplateTestServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
 		String content = req.getParameter("string_template_content");
+		String json = req.getParameter("json_content");
+		
 		
 		StringTemplate template = new StringTemplate(content);
 		template.setAttribute("name", "Frank");
 		
 		resp.getWriter().println(template.toString());
+		
+		resp.getWriter().println(json);
 	}
 }

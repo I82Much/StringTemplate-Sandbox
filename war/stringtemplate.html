@@ -20,17 +20,21 @@
     <table border="1" class="maintable">
       <tr>
         <td width="50%">
+          
           <form style="margin:0px" action="/stringtemplatetest" method="post" target="view">
             <input style="margin-bottom:5px;font-family:verdana;" name="submit" type="submit" value="Edit and Click Me &gt;&gt;"/>
-            <textarea name="string_template_content" class="code_input" width="100%" height="400px" id="pre_code" wrap="logical">
-</textarea>
+            <textarea name="string_template_content" class="code_input" width="100%" height="300px" id="pre_code" wrap="logical"></textarea>
+            
+            <textarea name="json_content" class="code_input" width="100%" height="100px" id="json_code" wrap="logical"></textarea>
+            
           </form>
         </td>
+        
         <td valign="top">
           <p class="result_header">
             Your Result:
           </p>
-          <iframe class="result_output" width="100%" height="400px" frameborder="1" name="view" src="tryit_view.asp?filename=tryhtml_input"></iframe>
+          <iframe class="result_output" width="100%" height="400px" frameborder="1" name="view"></iframe>
         </td>
       </tr>
     </table>
