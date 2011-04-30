@@ -28,10 +28,11 @@ public class StringTemplateTestServlet extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-		String content = req.getParameter("content");
-        log.info("Content: " + content);		
-//        resp.sendRedirect("/stringtemplate.html");
-        
-        resp.getWriter().println(content);
+		String content = req.getParameter("string_template_content");
+		
+		StringTemplate template = new StringTemplate(content);
+		template.setAttribute("name", "Frank");
+		
+		resp.getWriter().println(template.toString());
 	}
 }
