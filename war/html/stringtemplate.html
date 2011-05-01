@@ -12,25 +12,28 @@
     <h1>StringTemplate Online Sandbox</h1>
 
     <p>
-      This webapp exists to make it easy for new users to try the <a href="http://stringtemplate.org">StringTemplate language</a>.  Try changing the template and the JSON code which provides the model for the template, and see how the results change.
+      This webapp exists to make it easy for new users to try the <a href="http://stringtemplate.org">StringTemplate language</a>.  The JSON code provides the data model with which the template is populated; try changing both and then press the "Process template" button to see the result.  See the <a href="http://www.antlr.org/wiki/display/ST/StringTemplate+cheat+sheet">cheat sheet</a> for instructions on how to use StringTemplate.
     </p>
 
-    <table border="1" class="maintable">
+    <table border="0" class="maintable">
       <tr>
         <td width="50%">
           
           <form action="/stringtemplatetest" method="post" target="view">
-            <input class="center" name="submit" type="submit" value="Process template"/>
+
             <h2>StringTemplate</h2>
-            <textarea name="string_template_content" class="template_input" id="pre_code" wrap="logical">
+            <textarea name="string_template_content" class="code_input" id="pre_code" wrap="logical">
               
 $! Comment !$
 Hello $name$!
 
 List output: $int_list; separator=", "$
             </textarea>
+            
+            <center><button type="submit" class="minimal">Process template</button></center>
+            
             <h2>JSON</h2>
-            <textarea name="json_content" class="json_input" id="json_code" wrap="logical">
+            <textarea name="json_content" class="code_input" id="json_code" wrap="logical">
 {
   "name": "Nick",
   "int_list": [0,1,2,3,4,5,7]
@@ -38,16 +41,16 @@ List output: $int_list; separator=", "$
             </textarea>
           </form>
         </td>
-        
+                
         <td valign="top">
           <h2>Rendered Template</h2>
-          <iframe class="result_output" width="100%" height="400px" frameborder="1" name="view"></iframe>
+          <iframe class="result_output" width="100%" height="400px" frameborder="0" name="view"></iframe>
         </td>
       </tr>
     </table>
 
-    <footer>
-      Written by <a href="http://about.me/nicholasdunn">Nicholas Dunn</a>.  Builds upon ideas of <a href="http://www.antlr.org/wiki/display/ST/STST+-+StringTemplate+Standalone+Tool">John Snyder's StringTemplate Standalone Tool</a>.  
+    <footer class="bottomtext">
+      Written by <a href="http://about.me/nicholasdunn">Nicholas Dunn</a>.  Not affiliated with StringTemplate or Terence Parr.  Builds upon ideas of <a href="http://www.antlr.org/wiki/display/ST/STST+-+StringTemplate+Standalone+Tool">John Snyder's StringTemplate Standalone Tool</a>.  CSS and basic layout modified from <a href="http://w3schools.com/tryit.css">w3schools</a>.  Buttons modified from <a href="http://ubuwaits.github.com/css3-buttons/">Chad Mazzola's CSS3 buttons</a>
     </footer>
   </body>
 </html>
