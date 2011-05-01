@@ -23,11 +23,50 @@
 
             <h2>StringTemplate</h2>
             <textarea name="string_template_content" class="code_input" id="pre_code" wrap="logical">
-              
-$! Comment !$
-Hello $name$!
+group bookstore;
 
-List output: $int_list; separator=", "$
+
+// Entry point into the templates; can be named anything in a real program but
+// I have chosen to render the template named 'main' for simplicity sake.
+main()::=&lt;&lt;
+
+&lt;h1&gt;Welcome to the Bookstore&lt;/h1&gt;
+
+$! Simple variable substitution !$
+&lt;p&gt;Hello $name$! Welcome to the bookstore.  Here are our titles:&lt;/p&gt;
+
+&lt;table&gt;
+    $! List literal !$
+    &lt;tr&gt;$["Name","Author"]:{ item | &lt;th&gt;$item$&lt;/th&gt; }$&lt;/tr&gt;
+    &lt;tr&gt;
+        $! Apply the book_table_row template to each item in the books_list array !$
+        $library:book_table_row(); separator="\n"$
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+
+&gt;&gt;
+
+book_table_row(book)::=&lt;&lt;
+&lt;td&gt;$book.name$&lt;/th&gt;
+$! Conditional output; check for existence of variable. !$
+&lt;td&gt;
+$if(book.author)$
+$book.author$
+$else$
+Anonymous
+$endif$
+&lt;/td&gt;
+&gt;&gt;
+
+
+bold(item)::=&lt;&lt;
+&lt;b&gt;$item$&lt;/b&gt;
+&gt;&gt;
+
+italics(item)::=&lt;&lt;
+&lt;i&gt;$item$&lt;/i&gt;
+&gt;&gt;
             </textarea>
             
             <center><button type="submit" class="minimal">Process template</button></center>
@@ -36,7 +75,15 @@ List output: $int_list; separator=", "$
             <textarea name="json_content" class="code_input" id="json_code" wrap="logical">
 {
   "name": "Nick",
-  "int_list": [0,1,2,3,4,5,7]
+  "library": [
+    {
+      "name":"The Bonfire of the Humanities",
+      "author":"Victor Davis Hanson"
+    },
+    {
+      "name":"The Bible"
+    }
+  ]
 }
             </textarea>
           </form>

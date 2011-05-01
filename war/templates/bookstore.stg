@@ -1,0 +1,46 @@
+group bookstore;
+
+
+// Entry point into the templates; can be named anything in a real program but
+// I have chosen to render the template named 'main' for simplicity sake.
+main()::=<<
+
+<h1>Welcome to the Bookstore</h1>
+              
+$! Simple variable substitution !$
+<p>Hello $name$! Welcome to the bookstore.  Here are our titles:</p>
+
+<table>
+    $! List literal !$
+    <tr>$["Name","Author"]:{ item | <th>$item$</th> }$</tr>
+    <tr>
+        $! Apply the book_table_row template to each item in the books_list array !$
+        $library:book_table_row(); separator="\n"$
+    </tr>
+</table>
+
+
+>>
+
+book_table_row(book)::=<<
+<td>$book.name$</th>
+$! Conditional output; check for existence of variable. !$
+<td>
+$if(book.author)$
+$book.author$
+$else$
+Anonymous
+$endif$
+</td>
+>>
+
+
+bold(item)::=<<
+<b>$item$</b>
+>>
+
+italics(item)::=<<
+<i>$item$</i>
+>>
+
+
