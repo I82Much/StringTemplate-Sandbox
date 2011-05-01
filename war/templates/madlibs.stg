@@ -1,0 +1,25 @@
+group madlibs;
+
+
+main()::=<<
+$jungle_story()$
+>>
+
+// Modified from "Papa English"'s story
+// at http://www.teach-nology.com/worksheets/language_arts/madlibs/5/
+jungle_story()::=<<
+I walk through the color jungle. I take out my
+$adjective1$ canteen.There's a $adjective2$
+parrot with a $adjective3$ $noun1$
+in his mouth right in front of me in the
+$adjective4$ trees! I gaze at his $adjective5$
+$noun2$. A sudden sound awakes me from my
+daydream! A panther $verb1$ in front of my
+head! I $verb2$ his $adjective6$
+breath. I remember I have a packet of $noun3$
+that makes panthers go into a deep slumber! I $verb3$ it
+away in front of the $noun4$.Yes he's eating
+it! I $verb4$ away through the
+$adjective7$ jungle. I meet my parents at the tent.
+Phew; Its been an exciting day in the jungle.
+>>

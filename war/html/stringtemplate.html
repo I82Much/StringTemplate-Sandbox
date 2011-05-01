@@ -5,6 +5,148 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>StringTemplate Online Sandbox</title>
     <link rel="stylesheet" type="text/css" href="../css/stringtemplate.css" />
+    
+    <script type="text/javascript">
+    window.onload=templatechange;
+    
+    function templatechange()
+    {
+      var selection = document.getElementById("predefined_templates").value
+      var template_textarea = document.getElementById("pre_code");
+      var json_textarea = document.getElementById("json_code");
+      // Todo: clear out rendered template text.
+      
+      switch (selection) {
+        case "madlib":
+          template_textarea.innerHTML = 'group madlibs;\n'+ 
+          '\n'+ 
+          '\n'+ 
+          'main()::=<<\n'+ 
+          '$jungle_story()$\n'+ 
+          '>>\n'+ 
+          '\n'+ 
+          '// Modified from "Papa English"\'s story\n'+ 
+          '// at http://www.teach-nology.com/worksheets/language_arts/madlibs/5/\n'+ 
+          'jungle_story()::=<<\n'+ 
+          'I walk through the color jungle. I take out my\n'+ 
+          '$adjective1$ canteen.There\'s a $adjective2$\n'+ 
+          'parrot with a $adjective3$ $noun1$\n'+ 
+          'in his mouth right in front of me in the\n'+ 
+          '$adjective4$ trees! I gaze at his $adjective5$\n'+ 
+          '$noun2$. A sudden sound awakes me from my\n'+ 
+          'daydream! A panther $verb1$ in front of my\n'+ 
+          'head! I $verb2$ his $adjective6$\n'+ 
+          'breath. I remember I have a packet of $noun3$\n'+ 
+          'that makes panthers go into a deep slumber! I $verb3$ it\n'+ 
+          'away in front of the $noun4$.Yes he\'s eating\n'+ 
+          'it! I $verb4$ away through the\n'+ 
+          '$adjective7$ jungle. I meet my parents at the tent.\n'+ 
+          'Phew; Its been an exciting day in the jungle.\n'+ 
+          '>>\n'
+          
+          
+          json_textarea.innerHTML = '{\n'+ 
+          '    "adjective1": "smelly",\n'+ 
+          '    "adjective2": "fast",\n'+ 
+          '    "adjective3": "creepy",\n'+ 
+          '    "adjective4": "dark",\n'+ 
+          '    "adjective5": "forboding",\n'+ 
+          '    "adjective6": "ugly",\n'+ 
+          '    "adjective7": "annoying",\n'+ 
+          '    "adjective8": "private",\n'+ 
+          '    \n'+ 
+          '    "verb1": "punch",\n'+ 
+          '    "verb2": "run",\n'+ 
+          '    "verb3": "crawl",\n'+ 
+          '    "verb4": "sneeze",\n'+ 
+          '    "verb5": "escape",\n'+ 
+          '    "verb6": "program",\n'+ 
+          '\n'+ 
+          '    "noun1": "watch",\n'+ 
+          '    "noun2": "water bottle",\n'+ 
+          '    "noun3": "olive oil",\n'+ 
+          '    "noun4": "knife",\n'+ 
+          '    "noun5": "paper towel",\n'+ 
+          '    "noun6": "computer" \n'+ 
+          '}\n'
+          
+          
+          
+          break;
+        case "bookstore":
+          template_textarea.innerHTML = 'group bookstore;\n'+ 
+          '\n'+ 
+          '\n'+ 
+          '// Entry point into the templates; can be named anything in a real program but\n'+ 
+          '// I have chosen to render the template named \'main\' for simplicity sake.\n'+ 
+          'main()::=<<\n'+ 
+          '\n'+ 
+          '<h1>Welcome to the Bookstore</h1>\n'+ 
+          '              \n'+ 
+          '$! Simple variable substitution !$\n'+ 
+          '<p>Hello $name$! Welcome to the bookstore.  Here are our titles:</p>\n'+ 
+          '\n'+ 
+          '<table>\n'+ 
+          '    $! List literal !$\n'+ 
+          '    <tr>$["Name","Author"]:{ item | <th>$item$</th> }$</tr>\n'+ 
+          '    $! Apply the book_table_row template to each item in the books_list array !$\n'+ 
+          '    $library:book_table_row(); separator="\n"$\n'+ 
+          '</table>\n'+ 
+          '\n'+ 
+          '\n'+ 
+          '>>\n'+ 
+          '\n'+ 
+          'book_table_row(book)::=<<\n'+ 
+          '<tr>\n'+ 
+          '    <td>$book.name$</th>\n'+ 
+          '    $! Conditional output; check for existence of variable. !$\n'+ 
+          '    <td>\n'+ 
+          '    $if(book.author)$\n'+ 
+          '    $book.author$\n'+ 
+          '    $else$\n'+ 
+          '    Anonymous\n'+ 
+          '    $endif$\n'+ 
+          '    </td>\n'+ 
+          '</tr>\n'+ 
+          '>>\n'+ 
+          '\n'+ 
+          '\n'+ 
+          'bold(item)::=<<\n'+ 
+          '<b>$item$</b>\n'+ 
+          '>>\n'+ 
+          '\n'+ 
+          'italics(item)::=<<\n'+ 
+          '<i>$item$</i>\n'+ 
+          '>>\n'+ 
+          '\n'+ 
+          '\n'
+          
+          json_textarea.innerHTML = '{\n'+ 
+          '  "name": "Nick",\n'+ 
+          '  "library": [\n'+ 
+          '    {\n'+ 
+          '      "name":"The Bonfire of the Humanities",\n'+ 
+          '      "author":"Victor Davis Hanson"\n'+ 
+          '    },\n'+ 
+          '    {\n'+ 
+          '      "name":"The Bible"\n'+ 
+          '    }\n'+ 
+          '  ]\n'+ 
+          '}\n'
+          
+          
+        
+          break;
+        case "blank":
+          template_textarea.innerHTML = "group blank;\nmain()::=<<>>"
+          json_textarea.innerHTML = "{}"
+          break;
+        default:
+          alert("Unknown predefined template: " + selection)
+      }
+    }
+    </script>
+    
   </head>
 
   <!-- Adapted from w3schools. -->
@@ -20,80 +162,24 @@
         <td width="50%">
           
           <form action="/stringtemplatetest" method="post" target="view">
-
             <h2>StringTemplate</h2>
-            <textarea name="string_template_content" class="code_input" id="pre_code" wrap="logical">
-group bookstore;
-
-
-// Entry point into the templates; can be named anything in a real program but
-// I have chosen to render the template named 'main' for simplicity sake.
-main()::=&lt;&lt;
-
-&lt;h1&gt;Welcome to the Bookstore&lt;/h1&gt;
-
-$! Simple variable substitution !$
-&lt;p&gt;Hello $name$! Welcome to the bookstore.  Here are our titles:&lt;/p&gt;
-
-&lt;table&gt;
-    $! List literal !$
-    &lt;tr&gt;$["Name","Author"]:{ item | &lt;th&gt;$item$&lt;/th&gt; }$&lt;/tr&gt;
-    &lt;tr&gt;
-        $! Apply the book_table_row template to each item in the books_list array !$
-        $library:book_table_row(); separator="\n"$
-    &lt;/tr&gt;
-&lt;/table&gt;
-
-
-&gt;&gt;
-
-book_table_row(book)::=&lt;&lt;
-&lt;tr&gt;
-    &lt;td&gt;$book.name$&lt;/th&gt;
-    $! Conditional output; check for existence of variable. !$
-    &lt;td&gt;
-    $if(book.author)$
-    $book.author$
-    $else$
-    Anonymous
-    $endif$
-    &lt;/td&gt;
-&lt;/tr&gt;
-&gt;&gt;
-
-
-bold(item)::=&lt;&lt;
-&lt;b&gt;$item$&lt;/b&gt;
-&gt;&gt;
-
-italics(item)::=&lt;&lt;
-&lt;i&gt;$item$&lt;/i&gt;
-&gt;&gt;
-            </textarea>
+            <select id="predefined_templates" onchange="templatechange()">
+              <option value="madlib">Mad Libs</option>
+              <option value="bookstore">Bookstore dynamic HTML</option>
+              <option value="blank">Blank</option>
+            </select>
+            <textarea name="string_template_content" class="code_input" id="pre_code" wrap="logical"></textarea>
             
             <center><button type="submit" class="minimal">Process template</button></center>
             
             <h2>JSON</h2>
-            <textarea name="json_content" class="code_input" id="json_code" wrap="logical">
-{
-  "name": "Nick",
-  "library": [
-    {
-      "name":"The Bonfire of the Humanities",
-      "author":"Victor Davis Hanson"
-    },
-    {
-      "name":"The Bible"
-    }
-  ]
-}
-            </textarea>
+            <textarea name="json_content" class="code_input" id="json_code" wrap="logical"></textarea>
           </form>
         </td>
                 
         <td valign="top">
           <h2>Rendered Template</h2>
-          <iframe class="result_output" width="100%" height="100%" frameborder="0" name="view"></iframe>
+          <iframe class="result_output" id="result_output" width="100%" height="100%" frameborder="0" name="view"></iframe>
         </td>
       </tr>
     </table>
