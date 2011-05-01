@@ -1,6 +1,7 @@
 package net.developmentality.StringTemplate;
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.util.Arrays;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServlet;
@@ -69,7 +70,12 @@ public class StringTemplateTestServlet extends HttpServlet {
 		// The JSON provided by the user powers the 
 		template.setArgumentContext(data);
 		
-		resp.getWriter().println(template.toString());
+		String templateResult = template.toString();
+		log.info(templateResult);
+		log.info(Arrays.toString(templateResult.split("\n")));
+		
+		resp.setContentType("text/plain");
+		resp.getWriter().println(templateResult);
 	}
 	
 	
