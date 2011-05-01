@@ -13,25 +13,25 @@ $! Simple variable substitution !$
 <table>
     $! List literal !$
     <tr>$["Name","Author"]:{ item | <th>$item$</th> }$</tr>
-    <tr>
-        $! Apply the book_table_row template to each item in the books_list array !$
-        $library:book_table_row(); separator="\n"$
-    </tr>
+    $! Apply the book_table_row template to each item in the books_list array !$
+    $library:book_table_row(); separator="\n"$
 </table>
 
 
 >>
 
 book_table_row(book)::=<<
-<td>$book.name$</th>
-$! Conditional output; check for existence of variable. !$
-<td>
-$if(book.author)$
-$book.author$
-$else$
-Anonymous
-$endif$
-</td>
+<tr>
+    <td>$book.name$</th>
+    $! Conditional output; check for existence of variable. !$
+    <td>
+    $if(book.author)$
+    $book.author$
+    $else$
+    Anonymous
+    $endif$
+    </td>
+</tr>
 >>
 
 

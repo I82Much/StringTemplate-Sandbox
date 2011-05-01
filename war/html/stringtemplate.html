@@ -48,15 +48,17 @@ $! Simple variable substitution !$
 &gt;&gt;
 
 book_table_row(book)::=&lt;&lt;
-&lt;td&gt;$book.name$&lt;/th&gt;
-$! Conditional output; check for existence of variable. !$
-&lt;td&gt;
-$if(book.author)$
-$book.author$
-$else$
-Anonymous
-$endif$
-&lt;/td&gt;
+&lt;tr&gt;
+    &lt;td&gt;$book.name$&lt;/th&gt;
+    $! Conditional output; check for existence of variable. !$
+    &lt;td&gt;
+    $if(book.author)$
+    $book.author$
+    $else$
+    Anonymous
+    $endif$
+    &lt;/td&gt;
+&lt;/tr&gt;
 &gt;&gt;
 
 
