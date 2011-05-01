@@ -1,16 +1,10 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<!-- The HTML 4.01 Transitional DOCTYPE declaration-->
-<!-- above set at the top of the file will set     -->
-<!-- the browser's rendering engine into           -->
-<!-- "Quirks Mode". Replacing this declaration     -->
-<!-- with a "Standards Mode" doctype is supported, -->
-<!-- but may lead to some differences in layout.   -->
+<!DOCTYPE html>
 
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>StringTemplate Online Sandbox</title>
-    <link rel="stylesheet" type="text/css" href="../stringtemplate.css" />
+    <link rel="stylesheet" type="text/css" href="../css/stringtemplate.css" />
   </head>
 
   <!-- Adapted from w3schools. -->
@@ -26,9 +20,9 @@
         <td width="50%">
           
           <form action="/stringtemplatetest" method="post" target="view">
-            <input name="submit" type="submit" value="Edit StringTemplate and JSON, then Click Me"/>
+            <input class="center" name="submit" type="submit" value="Process template"/>
             <h2>StringTemplate</h2>
-            <textarea name="string_template_content" class="code_input" width="100%" height="300px" id="pre_code" wrap="logical">
+            <textarea name="string_template_content" class="template_input" id="pre_code" wrap="logical">
               
 $! Comment !$
 Hello $name$!
@@ -36,7 +30,7 @@ Hello $name$!
 List output: $int_list; separator=", "$
             </textarea>
             <h2>JSON</h2>
-            <textarea name="json_content" class="code_input" width="100%" height="100px" id="json_code" wrap="logical">
+            <textarea name="json_content" class="json_input" id="json_code" wrap="logical">
 {
   "name": "Nick",
   "int_list": [0,1,2,3,4,5,7]
@@ -46,14 +40,14 @@ List output: $int_list; separator=", "$
         </td>
         
         <td valign="top">
-          <p class="result_header">
-            Rendered template:
-          </p>
+          <h2>Rendered Template</h2>
           <iframe class="result_output" width="100%" height="400px" frameborder="1" name="view"></iframe>
         </td>
       </tr>
     </table>
 
-    
+    <footer>
+      Written by <a href="http://about.me/nicholasdunn">Nicholas Dunn</a>.  Builds upon ideas of <a href="http://www.antlr.org/wiki/display/ST/STST+-+StringTemplate+Standalone+Tool">John Snyder's StringTemplate Standalone Tool</a>.  
+    </footer>
   </body>
 </html>
