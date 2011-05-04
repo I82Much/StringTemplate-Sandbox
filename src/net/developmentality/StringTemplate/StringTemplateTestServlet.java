@@ -1,6 +1,7 @@
 package net.developmentality.StringTemplate;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.NoSuchElementException;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServlet;
@@ -57,6 +58,14 @@ public class StringTemplateTestServlet extends HttpServlet {
 		catch (IllegalArgumentException exception) {
 			resp.setContentType("text/html");
 			resp.getWriter().println("Error: There was no template group named 'main'.");
+		}
+		catch (NoSuchElementException nsee) {
+			resp.setContentType("text/html");
+			resp.getWriter().println("Error: A variable was used but it was not defined.  If you want to allow for null attributes, introduce it as a parameter to the template.");
+			resp.getWriter().println("<pre>");
+			nsee.printStackTrace(resp.getWriter());
+			resp.getWriter().println("</pre>");
+			return;
 		}
 	}
 	
