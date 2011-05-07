@@ -6,6 +6,30 @@
     <title>StringTemplate Online Sandbox</title>
     <link rel="stylesheet" type="text/css" href="../css/stringtemplate.css" />
     
+    
+    <link rel="stylesheet" href="../lib/codemirror.css">
+    <script src="../lib/codemirror.js"></script>
+    <script src="../lib/overlay.js"></script>
+    
+    
+    <!-- html/xml handling -->
+    <link rel="stylesheet" href="../CodeMirror-2.0/mode/xml/xml.css">
+    <script src="../CodeMirror-2.0/mode/xml/xml.js"></script>
+    
+    
+    <!-- Javascript handling, e.g. for the JSON -->
+    <link rel="stylesheet" href="../CodeMirror-2.0/mode/javascript/javascript.css">
+    <script src="../CodeMirror-2.0/mode/javascript/javascript.js"></script> 
+    
+    <link rel="stylesheet" href="../css/docs.css">
+
+    <style type="text/css">
+      .CodeMirror {border: 1px solid black;}
+      .mustache {color: #0ca;}
+      
+      
+    </style>
+    
     <script type="text/javascript">
     window.onload=templatechange;
     
@@ -175,6 +199,38 @@
             <h2>JSON</h2>
             <textarea name="json_content" class="code_input" id="json_code" wrap="logical"></textarea>
           </form>
+          
+          <script>
+      CodeMirror.defineMode("stringtemplate", function(config, parserConfig) {
+        var stringtemplateOverlay = {
+          token: function(stream, state) {
+            if (stream.match("$", consume="true")) {
+              while ((ch = stream.next()) != null)
+                if (ch == '$') break;
+              return "mustache";
+            }
+            while (stream.next() != null && !stream.match("$", false)) {}
+            return null;
+          }
+        };
+        return CodeMirror.overlayParser(CodeMirror.getMode(config, parserConfig.backdrop || "text/html"), stringtemplateOverlay);
+      });
+      // This will, among other things, ensure that the textarea's value is updated when the form (if it is part of a form) is submitted.
+      var editor = CodeMirror.fromTextArea(document.getElementById("pre_code"), {
+        mode: "stringtemplate",
+        lineNumbers: true,
+        matchBrackets: true
+      });
+      
+      
+      var json_editor = CodeMirror.fromTextArea(document.getElementById("json_code"), { 
+        mode: "javascript",
+        lineNumbers: true,
+        matchBrackets: true
+      });
+      
+      </script>
+          
         </td>
                 
         <td valign="top">
